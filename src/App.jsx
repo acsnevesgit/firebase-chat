@@ -142,8 +142,8 @@ const App = () => {
   // --------------------------- Render ---------------------------
 
   return (
-    <div className="content">
-      <div className="content-container">
+    <div className="content-logged">
+      <div className="content-container-logged">
         <header
           className=""
         >

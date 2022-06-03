@@ -44,6 +44,7 @@ footer {
 img.logo {
   width: 20em;
   height: auto;
+  margin-top: 3.5em;
 }
 
 .logo-title span {
@@ -63,14 +64,22 @@ h1 {
 .content {
   display: flex;
   place-content: center;
+  background-color: var(--primary);
+
 }
 
 .content-container {
   align-items: center;
   text-align: center;
+  width: 40vw;
+  height: 100vh;
+  border: 2px solid var(--primary);
+  background-color: var(--light) !important;
+  vertical-align: middle !important;
 }
 
-.google-icon, .github-icon {
+.google-icon,
+.github-icon {
   width: 24px;
   height: auto;
   margin-left: 6px;
@@ -83,7 +92,9 @@ h1 {
   align-items: center;
 }
 
-.sign-in-with-Google, .sign-in-with-GitHub, .sign-out {
+.sign-in-with-Google,
+.sign-in-with-GitHub,
+.sign-out {
   color: var(--primary) !important;
   border: 2px solid var(--primary) !important;
   font-weight: bold !important;
@@ -92,8 +103,46 @@ h1 {
   height: 48px;
 }
 
-.sign-in-with-Google:hover, .sign-in-with-GitHub:hover, .sign-out:hover {
+.sign-in-with-Google:hover,
+.sign-in-with-GitHub:hover,
+.sign-out:hover {
   background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* --------------------- media queries --------------------- */
+
+@media only screen and (max-width: 1200px) {
+
+  .content-container {
+    width: 60vw;
+  }
+
+  img.logo {
+    width: 16em;
+    margin-top: 5em;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .text {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+
+  .content-container {
+    width: 100vw;
+  }
+
+  .sign-in-with-Google,
+  .sign-in-with-GitHub,
+  .sign-out {
+    font-size: 16px;
+    width: 250px;
+  }
 }
 
 /* ----------------------- keyframes ----------------------- */
@@ -104,15 +153,47 @@ h1 {
 }
 
 @keyframes fire {
-  0% {transform: rotate(-0.5deg);}
-  10% {transform: rotate(-1.5deg) scaleX(0.99) scaleY(1.01);}
-  20% {transform: rotate(1.5deg) scaleX(0.98) scaleY(1.02);}
-  30% {transform: rotate(0.5deg) scaleX(0.99) scaleY(1.01);}
-  40% {transform: rotate(-1deg);}
-  50% {transform: rotate(0.5deg) scaleX(0.99) scaleY(1.01);}
-  60% {transform: rotate(1deg) scaleX(1) scaleY(1.02);}
-  70% {transform: rotate(0.5deg);}
-  80% {transform: rotate(-1deg) scaleX(1.02) scaleY(0.98);}
-  90% {transform: rotate(-0.5deg) scaleX(1.01) scaleY(1.01);}
-  100% {transform: rotate(-0.5deg);}
+  0% {
+    transform: rotate(-0.5deg);
+  }
+
+  10% {
+    transform: rotate(-1.5deg) scaleX(0.99) scaleY(1.01);
+  }
+
+  20% {
+    transform: rotate(1.5deg) scaleX(0.98) scaleY(1.02);
+  }
+
+  30% {
+    transform: rotate(0.5deg) scaleX(0.99) scaleY(1.01);
+  }
+
+  40% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(0.5deg) scaleX(0.99) scaleY(1.01);
+  }
+
+  60% {
+    transform: rotate(1deg) scaleX(1) scaleY(1.02);
+  }
+
+  70% {
+    transform: rotate(0.5deg);
+  }
+
+  80% {
+    transform: rotate(-1deg) scaleX(1.02) scaleY(0.98);
+  }
+
+  90% {
+    transform: rotate(-0.5deg) scaleX(1.01) scaleY(1.01);
+  }
+
+  100% {
+    transform: rotate(-0.5deg);
+  }
 }
