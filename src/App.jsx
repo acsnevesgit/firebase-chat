@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { FcGoogle } from "react-icons/fc";
+import { FcGoogle, FcQuestions } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
 import Button from '@mui/material/Button';
+import './App.css';
 
+// Components
 import Loader from './components/Loader';
 import Channel from './components/Channel';
 import logo from './assets/chatlogo.png';
-import './App.css';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -38,9 +39,31 @@ const App = () => {
 
   // --------------------------- Functions ---------------------------
 
-  // Sign-in
+  // Sign-in with Google
   const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider(); // Retrieve Google provider object
+    firebase.auth().useDeviceLanguage(); // Set language to the default browser preference
+    try {
+      await firebase.auth().signInWithPopup(provider);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // Sign-in with GitHub
+  const signInWithGitHub = async () => {
+    const provider = new firebase.auth.GithubAuthProvider(); // Retrieve GitHub provider object
+    firebase.auth().useDeviceLanguage(); // Set language to the default browser preference
+    try {
+      await firebase.auth().signInWithPopup(provider);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // Sign-in Anonymously
+  const signInAnonymously = async () => {
+    const provider = new firebase.auth.signInAnonymously();
     firebase.auth().useDeviceLanguage(); // Set language to the default browser preference
     try {
       await firebase.auth().signInWithPopup(provider);
@@ -68,12 +91,12 @@ const App = () => {
       );
     }
 
-    // if user is logged in, show Channel
+    // if user is logged in, render Channel
     if (user) {
       return (<Channel user={user} />)
     };
 
-    // if user is not logged in, show login page
+    // if user is not logged in, render login page
     return (
       <div className="content">
         <div className="content-container">
@@ -95,9 +118,17 @@ const App = () => {
             <Button
               className="sign-in-with-GitHub"
               variant="outlined"
-            // onClick={signInWithGitHub}
+              onClick={signInWithGitHub}
             >
               Sign in with GitHub&nbsp;<BsGithub className="github-icon" />
+            </Button>
+            <Button
+              className="sign-in-Anonymously"
+              variant="outlined"
+              onClick={signInAnonymously}
+              disabled
+            >
+              Sign in Anonymously&nbsp;<FcQuestions className="anonymous-icon" />
             </Button>
           </div>
         </div>
@@ -142,29 +173,26 @@ const App = () => {
   // --------------------------- Render ---------------------------
 
   return (
-    <div className="content-logged">
-      <div className="content-container-logged">
-        <header
-          className=""
-        >
-          <div className="">
-            {user ? (
-              <Button
-                className="sign-out"
-                variant="outlined"
-                onClick={signOut}
-              >
-                Sign out
-              </Button>
-            ) : null}
-          </div>
-        </header>
-        <main
-          className="flex-1"
-        >
-          {renderContent()}
-        </main>
+    <div className="content main">
+      <div className="sign-out">
+        {user ? (
+          <Button
+            className="sign-out-button"
+            variant="outlined"
+            onClick={signOut}
+          >
+            Sign out
+          </Button>
+        ) : null}
       </div>
+      <div className="main-render">
+        {renderContent()}
+      </div>
+      {user ? (
+        <div className="footer">
+          <p>Copyright</p>
+        </div>
+      ) : null}
     </div>
   );
 };

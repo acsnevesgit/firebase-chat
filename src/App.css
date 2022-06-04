@@ -35,29 +35,20 @@ code {
   font-family: 'Arsenal', sans-serif;
 }
 
-nav,
-footer {
-  width: 100%;
-  padding: 20px;
-}
-
-img.logo {
-  width: 20em;
-  height: auto;
-  margin-top: 3.5em;
-}
-
-.logo-title span {
-  text-shadow: 1px 1px 3px var(--dark);
-}
-
 h1 {
   font-size: 40px;
   margin: 16px 0;
 }
 
-.text {
-  font-size: 24px;
+/* --------------------- ClassNames --------------------- */
+
+.avatar {
+  width: 60px;
+  height: auto;
+  border-radius: 30px;
+}
+
+.chat-id {
   margin: 16px 0;
 }
 
@@ -65,7 +56,15 @@ h1 {
   display: flex;
   place-content: center;
   background-color: var(--primary);
+}
 
+.footer {
+  height: 64px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
 }
 
 .content-container {
@@ -75,14 +74,86 @@ h1 {
   height: 100vh;
   border: 2px solid var(--primary);
   background-color: var(--light) !important;
-  vertical-align: middle !important;
+}
+
+.content-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+}
+
+.content-messages-container {
+  border-radius: 10px;
+}
+
+.chat-main {
+  display: flex;
+  place-content: center;
+}
+
+.chat-main ul {
+  width: 40vw !important;
+  margin: 32px 0;
+}
+
+.chat-main li {
+  list-style: none;
+}
+
+.display-name {
+  font-weight: bold;
+  margin: 12px !important;
 }
 
 .google-icon,
-.github-icon {
+.github-icon,
+.anonymous-icon {
   width: 24px;
   height: auto;
   margin-left: 6px;
+}
+
+.settings-icon {
+  width: 24px;
+  height: auto;
+  margin: 0 6px;
+}
+
+.logo {
+  width: 16em;
+  height: auto;
+  margin-top: 2em;
+}
+
+.logo-title span {
+  text-shadow: 1px 1px 3px var(--dark);
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  position: absolute !important;
+  bottom: 0 !important;
+}
+
+.message-header {
+  background-color: rgba(143, 143, 143, 0.2) !important;
+  display: flex;
+  justify-content: end;
+  height: 48px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.message-info {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.send-message {
+  display: inline-flex !important;
+  align-items: center;
 }
 
 .sign-in {
@@ -92,21 +163,105 @@ h1 {
   align-items: center;
 }
 
+.sign-out {
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary) !important;
+}
+
 .sign-in-with-Google,
 .sign-in-with-GitHub,
-.sign-out {
+.sign-in-Anonymously,
+.sign-out-button {
+  background-color: white !important;
   color: var(--primary) !important;
   border: 2px solid var(--primary) !important;
   font-weight: bold !important;
-  margin: 0 0 16px 0 !important;
+  margin: 16px 0 !important;
   width: 250px;
   height: 48px;
 }
 
+.sign-out-button{
+  width: 150px;
+  height: 48px;
+  margin: 32px 0 !important;
+}
+
+.send-button {
+  background-color: none !important;
+}
+
+.settings-button {
+  display: inline-flex;
+  border: none !important;
+  justify-content: end;
+}
+
 .sign-in-with-Google:hover,
 .sign-in-with-GitHub:hover,
-.sign-out:hover {
+.sign-in-Anonymously:hover {
   background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.send-button:hover,
+.sign-out-button:hover {
+  background-color: rgba(247, 247, 247) !important;
+}
+
+.settings-button:hover {
+  background: none !important;
+}
+
+.text {
+  font-size: 24px;
+  margin: 16px 0;
+}
+
+.text-header {
+  font-size: 16px;
+  padding: 16px 0;
+}
+
+.text-message {
+  width: 50vw;
+  border: 1px solid var(--secondary);
+  margin: 0 32px 0 16px;
+  border-radius: 12px;
+  box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0.1);
+  background-color: white !important;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: var(--secondary);
+  margin: 0 6px 0 6px;
+}
+
+.user-message {
+  margin: 0 12px 12px 12px;
+  text-align: start;
+}
+
+.user-name {
+  display: flex;
+  align-items: baseline;
+}
+
+.user-photo {
+  margin: 12px 12px 12px 32px;
+}
+
+.write-text {
+  background-color: white !important;
+  border-radius: 0 !important;
+  margin-bottom: none !important;
+  width: 30vw !important;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  height: 100px !important;
+  border: none !important;
 }
 
 /* --------------------- media queries --------------------- */
@@ -117,9 +272,13 @@ h1 {
     width: 60vw;
   }
 
+  .chat-main ul {
+    width: 60vw !important;
+  }
+
   img.logo {
     width: 16em;
-    margin-top: 5em;
+    margin-top: 2em;
   }
 
   h1 {
@@ -137,11 +296,29 @@ h1 {
     width: 100vw;
   }
 
+  .avatar {
+    width: 40px;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .chat-main ul {
+    width: 80vw !important;
+  }
+
+  img.logo {
+    width: 16em;
+    margin-top: 2em;
+  }
+
   .sign-in-with-Google,
-  .sign-in-with-GitHub,
-  .sign-out {
+  .sign-in-with-GitHub {
     font-size: 16px;
     width: 250px;
+  }
+
+  .sign-out {
+    font-size: 16px;
   }
 }
 
