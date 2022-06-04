@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatRelative } from 'date-fns';
+import Badge from '@mui/material/Badge';
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
 
 const formatDate = date => {
   let formattedDate = '';
@@ -26,10 +29,11 @@ const Message = ({
     <div className="message-info">
       <div className="user-photo">
       {photoURL ? (
-        <img
+        <Avatar
           src={photoURL}
           alt="avatar"
           className="avatar"
+          sx={{ width: 60, height: 60 }}
         />
       ) : null}
       </div>

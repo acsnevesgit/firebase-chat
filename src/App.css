@@ -3,6 +3,8 @@
   /* (0, 0, 0) */
   --secondary: #8f8f8f;
   /* (143,143,143) */
+  --secondary-light: #dad5d5;
+  /* (218, 213, 213) */
   --tertiary: #1976d2;
   /* (25, 118, 210) */
   --dark: #222222;
@@ -42,11 +44,11 @@ h1 {
 
 /* --------------------- ClassNames --------------------- */
 
-.avatar {
+/* .avatar {
   width: 60px;
   height: auto;
   border-radius: 30px;
-}
+} */
 
 .chat-id {
   margin: 16px 0;
@@ -58,15 +60,6 @@ h1 {
   background-color: var(--primary);
 }
 
-.footer {
-  height: 64px;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-}
-
 .content-container {
   align-items: center;
   text-align: center;
@@ -74,21 +67,32 @@ h1 {
   height: 100vh;
   border: 2px solid var(--primary);
   background-color: var(--light) !important;
+  border-radius: 25px;
 }
 
 .content-messages {
   display: flex;
-  flex-direction: column;
+  place-content: center;
+  background-color: var(--primary);
   align-items: center !important;
 }
 
 .content-messages-container {
+  width: 40vw;
+  border: 2px solid var(--primary);
+  background-color: var(--fire-medium) !important;
   border-radius: 10px;
+  /* background-image: url('./assets/fire6.png'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid white;
 }
 
 .chat-main {
   display: flex;
-  place-content: center;
+  height: 70vh;
+  flex-direction: column;
+  align-items: center;
 }
 
 .chat-main ul {
@@ -105,6 +109,15 @@ h1 {
   margin: 12px !important;
 }
 
+.footer {
+  height: 64px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
 .google-icon,
 .github-icon,
 .anonymous-icon {
@@ -116,7 +129,7 @@ h1 {
 .settings-icon {
   width: 24px;
   height: auto;
-  margin: 0 6px;
+  padding: 0 !important;
 }
 
 .logo {
@@ -132,17 +145,33 @@ h1 {
 .message {
   display: flex;
   flex-direction: column;
-  position: absolute !important;
-  bottom: 0 !important;
+  align-items: flex-start;
 }
 
-.message-header {
-  background-color: rgba(143, 143, 143, 0.2) !important;
+.message-header,
+.message-footer {
+  background-color: var(--dark) !important;
   display: flex;
   justify-content: end;
   height: 48px;
+  border: 1px solid white;
+}
+
+.message-header {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+
+.message-footer {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.message-options {
+  display: flex;
+  justify-items: start !important;
+  margin: 0 32px 32px 32px;
+  align-self: flex-start;
 }
 
 .message-info {
@@ -152,7 +181,8 @@ h1 {
 }
 
 .send-message {
-  display: inline-flex !important;
+  display: flex !important;
+  margin: 32px 0 6px 0 !important;
   align-items: center;
 }
 
@@ -172,7 +202,8 @@ h1 {
 .sign-in-with-Google,
 .sign-in-with-GitHub,
 .sign-in-Anonymously,
-.sign-out-button {
+.sign-out-button,
+.send-button {
   background-color: white !important;
   color: var(--primary) !important;
   border: 2px solid var(--primary) !important;
@@ -182,14 +213,16 @@ h1 {
   height: 48px;
 }
 
-.sign-out-button{
-  width: 150px;
-  height: 48px;
+.sign-out-button {
+  width: 130px !important;
   margin: 32px 0 !important;
 }
 
 .send-button {
-  background-color: none !important;
+  width: 80px;
+  margin-left: 12px !important;
+  border: 1px solid var(--secondary) !important;
+  align-items: center;
 }
 
 .settings-button {
@@ -255,12 +288,16 @@ h1 {
 .write-text {
   background-color: white !important;
   border-radius: 0 !important;
-  margin-bottom: none !important;
-  width: 30vw !important;
+  width: 28vw !important;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   height: 100px !important;
+  border: none !important;
+  text-align: start !important;
+}
+
+.css-iajp3t-MuiButtonGroup-root {
   border: none !important;
 }
 
@@ -268,7 +305,8 @@ h1 {
 
 @media only screen and (max-width: 1200px) {
 
-  .content-container {
+  .content-container,
+  .content-messages-container {
     width: 60vw;
   }
 
@@ -288,19 +326,24 @@ h1 {
   .text {
     font-size: 24px;
   }
+
+  .write-text {
+    width: 42vw !important;
+  }
 }
 
 @media only screen and (max-width: 750px) {
 
-  .content-container {
+  .content-container,
+  .content-messages-container {
     width: 100vw;
   }
 
-  .avatar {
+  /* .avatar {
     width: 40px;
     height: auto;
     border-radius: 20px;
-  }
+  } */
 
   .chat-main ul {
     width: 80vw !important;
@@ -319,6 +362,10 @@ h1 {
 
   .sign-out {
     font-size: 16px;
+  }
+
+  .write-text {
+    width: 70vw !important;
   }
 }
 

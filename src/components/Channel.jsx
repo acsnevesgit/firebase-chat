@@ -3,8 +3,9 @@ import firebase from 'firebase/compat/app';
 import { useFirestoreQuery } from '../hooks';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import TextField from '@mui/material/TextField';
-import { FcBookmark, FcLike, FcLikePlaceholder, FcNext, FcPhone, FcPrevious, FcSettings, FcSearch, FcEmptyTrash } from "react-icons/fc";
+import { FcBookmark, FcSpeaker, FcInfo, FcLike, FcLikePlaceholder, FcOk, FcPicture, FcPhone, FcSettings, FcSearch, FcEmptyTrash, FcVideoCall } from "react-icons/fc";
 
 // Components
 import Message from './Message';
@@ -59,14 +60,18 @@ const Channel = ({ user = null }) => {
   // --------------------------- Render ---------------------------
 
   return (
-    <div className="content content-messages">
-      <div className="content-container content-messages-container">
+    <div className="content-messages">
+      <div className="content-messages-container">
         <div className="message-header">
-        <Button className='settings-button' disabled type="submit" variant="outlined"><FcBookmark className='settings-icon' /></Button>
-        <Button className='settings-button' disabled type="submit" variant="outlined"><FcSearch className='settings-icon' /></Button>
-        <Button className='settings-button' disabled type="submit" variant="outlined"><FcPhone className='settings-icon' /></Button>
-        <Button className='settings-button' disabled type="submit" variant="outlined"><FcEmptyTrash className='settings-icon' /></Button>
-        <Button className='settings-button' disabled type="submit" variant="outlined"><FcSettings className='settings-icon' /></Button>
+          <ButtonGroup className='settings-button' disabled type="submit" variant="none">
+            <Button><FcBookmark className='settings-icon' /></Button>
+            <Button><FcSpeaker className='settings-icon' /></Button>
+            <Button><FcSearch className='settings-icon' /></Button>
+            <Button><FcPhone className='settings-icon' /></Button>
+            <Button><FcVideoCall className='settings-icon' /></Button>
+            <Button><FcEmptyTrash className='settings-icon' /></Button>
+            <Button><FcSettings className='settings-icon' /></Button>
+          </ButtonGroup>
         </div>
         <div className="chat-main">
           <ul>
@@ -99,13 +104,20 @@ const Channel = ({ user = null }) => {
                 type="submit"
                 disabled={!newMessage}
                 variant="outlined"
-                className="settings-button send-button"
-              >
-                <FcNext className='settings-icon'/>
+                className="send-button"
+                // endIcon={<FcOk className='settings-icon' />}
+              >Send
               </Button>
             </form>
           </div>
+          <div className='message-options'>
+            {/* <ButtonGroup className='settings-button' disabled type="submit" variant="none">
+              <Button><FcPicture className='settings-icon' /></Button>
+              <Button><FcInfo className='settings-icon' /></Button>
+            </ButtonGroup> */}
+          </div>
         </div>
+        <div className="message-footer" />
       </div>
     </div>
   );
