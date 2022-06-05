@@ -3,10 +3,10 @@
   /* (0, 0, 0) */
   --secondary: #8f8f8f;
   /* (143,143,143) */
-  --secondary-light: #dad5d5;
-  /* (218, 213, 213) */
   --tertiary: #1976d2;
   /* (25, 118, 210) */
+  --react: #61DAFB;
+  /* (97, 218, 251) */
   --dark: #222222;
   /* (34,34,34) */
   --light: #f7f7f7;
@@ -44,11 +44,9 @@ h1 {
 
 /* --------------------- ClassNames --------------------- */
 
-/* .avatar {
-  width: 60px;
-  height: auto;
-  border-radius: 30px;
-} */
+.avatar {
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.8);
+}
 
 .chat-id {
   margin: 16px 0;
@@ -80,12 +78,15 @@ h1 {
 .content-messages-container {
   width: 40vw;
   border: 2px solid var(--primary);
-  background-color: var(--fire-medium) !important;
   border-radius: 10px;
-  /* background-image: url('./assets/fire6.png'); */
+  background-image: url('./assets/wallpaper.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   border: 1px solid white;
+}
+
+.chat-list {
+  height: 25vw;
 }
 
 .chat-main {
@@ -100,8 +101,25 @@ h1 {
   margin: 32px 0;
 }
 
-.chat-main li {
+.self div.text-message {
   list-style: none;
+}
+
+.other {
+  direction:rtl !important;
+}
+
+.other div.text-message {
+  list-style: none;
+  border: 1px solid rgba(143, 143, 143, 0.6) !important;
+  text-align-last: right;
+  color: var(--secondary) !important;
+  box-shadow: 2px 1px 2px 2px rgba(0, 0, 0, 0.1);
+
+}
+
+.other div.user-name p.display-name {
+  color: var(--secondary);
 }
 
 .display-name {
@@ -109,7 +127,7 @@ h1 {
   margin: 12px !important;
 }
 
-.footer {
+.header, .footer {
   height: 64px;
 }
 
@@ -152,9 +170,10 @@ h1 {
 .message-footer {
   background-color: var(--dark) !important;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   height: 48px;
   border: 1px solid white;
+  justify-content: space-between;
 }
 
 .message-header {
@@ -170,19 +189,18 @@ h1 {
 .message-options {
   display: flex;
   justify-items: start !important;
-  margin: 0 32px 32px 32px;
   align-self: flex-start;
 }
 
 .message-info {
   display: flex;
   align-items: center;
-  margin: 16px 0;
+  margin: 16px 16px;
 }
 
 .send-message {
   display: flex !important;
-  margin: 32px 0 6px 0 !important;
+  margin: 0 0 32px 0 !important;
   align-items: center;
 }
 
@@ -194,15 +212,12 @@ h1 {
 }
 
 .sign-out {
-  display: flex;
-  justify-content: center;
-  background-color: var(--primary) !important;
+align-self: center;
 }
 
 .sign-in-with-Google,
 .sign-in-with-GitHub,
 .sign-in-Anonymously,
-.sign-out-button,
 .send-button {
   background-color: white !important;
   color: var(--primary) !important;
@@ -214,21 +229,23 @@ h1 {
 }
 
 .sign-out-button {
-  width: 130px !important;
-  margin: 32px 0 !important;
+  width: 115px !important;
+  margin: 0 24px !important;
+  border: none !important;
+  color: white !important;
+  font-weight: bold !important;
 }
 
 .send-button {
   width: 80px;
   margin-left: 12px !important;
-  border: 1px solid var(--secondary) !important;
   align-items: center;
 }
 
 .settings-button {
   display: inline-flex;
   border: none !important;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .sign-in-with-Google:hover,
@@ -237,13 +254,16 @@ h1 {
   background-color: rgba(0, 0, 0, 0.2) !important;
 }
 
-.send-button:hover,
-.sign-out-button:hover {
+.send-button:hover {
   background-color: rgba(247, 247, 247) !important;
 }
 
 .settings-button:hover {
-  background: none !important;
+  background: auto !important;
+}
+
+.sign-out-button:hover {
+  color: var(--light) !important;
 }
 
 .text {
@@ -258,17 +278,15 @@ h1 {
 
 .text-message {
   width: 50vw;
-  border: 1px solid var(--secondary);
-  margin: 0 32px 0 16px;
+  border: 1px solid var(--primary);
+  margin: 0 16px;
   border-radius: 12px;
-  box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 1px 2px 2px rgba(0, 0, 0, 0.1);
   background-color: white !important;
 }
 
 .timestamp {
   font-size: 12px;
-  color: var(--secondary);
-  margin: 0 6px 0 6px;
 }
 
 .user-message {
@@ -282,7 +300,7 @@ h1 {
 }
 
 .user-photo {
-  margin: 12px 12px 12px 32px;
+  margin: 12px 16px;
 }
 
 .write-text {
@@ -298,7 +316,16 @@ h1 {
 }
 
 .css-iajp3t-MuiButtonGroup-root {
+  background-color: var(--light) !important;
+}
+
+.css-1hgrxp0-MuiButtonGroup-root {
   border: none !important;
+  margin: 0 16px !important;
+}
+
+.css-1w1rijm-MuiButtonBase-root-MuiButton-root {
+  padding: 12px !important;
 }
 
 /* --------------------- media queries --------------------- */
@@ -338,12 +365,6 @@ h1 {
   .content-messages-container {
     width: 100vw;
   }
-
-  /* .avatar {
-    width: 40px;
-    height: auto;
-    border-radius: 20px;
-  } */
 
   .chat-main ul {
     width: 80vw !important;

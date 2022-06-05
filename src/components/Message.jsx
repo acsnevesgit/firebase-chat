@@ -37,7 +37,7 @@ const Message = ({
         />
       ) : null}
       </div>
-      <div  className="text-message">
+      <div className='text-message' >
         <div className="user-name">
           {displayName ? (
             <p className="display-name">{displayName}</p>

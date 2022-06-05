@@ -174,24 +174,14 @@ const App = () => {
 
   return (
     <div className="content main">
-      <div className="sign-out">
-        {user ? (
-          <Button
-            className="sign-out-button"
-            variant="outlined"
-            onClick={signOut}
-          >
-            Sign out
-          </Button>
-        ) : null}
-      </div>
+      {user ? (
+        <div className="header"></div>
+      ) : null}
       <div className="main-render">
         {renderContent()}
       </div>
       {user ? (
-        <div className="footer">
-          <p>Copyright</p>
-        </div>
+        <div className="footer"></div>
       ) : null}
     </div>
   );
