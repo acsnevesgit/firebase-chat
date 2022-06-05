@@ -12,10 +12,5 @@ export const colorTheme = createTheme({
       main: '#f44336',
       dark: '#ba000d',
     },
-    greys: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-    },
   },
 });

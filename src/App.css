@@ -56,6 +56,7 @@ h1 {
   display: flex;
   place-content: center;
   background-color: var(--primary);
+  height: 100vh;
 }
 
 .content-container {
@@ -63,7 +64,7 @@ h1 {
   text-align: center;
   width: 40vw;
   height: 100vh;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--secondary);
   background-color: var(--light) !important;
   border-radius: 25px;
 }
@@ -79,26 +80,29 @@ h1 {
   width: 40vw;
   border: 2px solid var(--primary);
   border-radius: 10px;
-  background-image: url('./assets/wallpaper.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 1px solid white;
 }
 
 .chat-list {
+  background-image: url('./assets/wallpaper.jpg');
+  background-size: cover !important;
   height: 25vw;
+  min-height: 400px;
+  overflow-y: overlay !important;
+  display: flex;
+  flex-direction: column-reverse !important;
 }
 
 .chat-main {
   display: flex;
-  height: 70vh;
   flex-direction: column;
   align-items: center;
+  background-color: var(--light);
 }
 
 .chat-main ul {
-  width: 40vw !important;
+  width: 39.5vw !important;
   margin: 32px 0;
+  list-style: none;
 }
 
 .self div.text-message {
@@ -125,10 +129,6 @@ h1 {
 .display-name {
   font-weight: bold;
   margin: 12px !important;
-}
-
-.header, .footer {
-  height: 64px;
 }
 
 .main {
@@ -172,8 +172,8 @@ h1 {
   display: flex;
   justify-content: flex-end;
   height: 48px;
-  border: 1px solid white;
   justify-content: space-between;
+  border: 2px solid var(--secondary);
 }
 
 .message-header {
@@ -190,12 +190,13 @@ h1 {
   display: flex;
   justify-items: start !important;
   align-self: flex-start;
+  margin-top: 32px;
 }
 
 .message-info {
   display: flex;
   align-items: center;
-  margin: 16px 16px;
+  margin: 16px 32px 16px 16px;
 }
 
 .send-message {
@@ -236,6 +237,11 @@ align-self: center;
   font-weight: bold !important;
 }
 
+.sign-out-button:hover {
+  color: var(--light) !important;
+  background: none !important;
+}
+
 .send-button {
   width: 80px;
   margin-left: 12px !important;
@@ -244,7 +250,7 @@ align-self: center;
 
 .settings-button {
   display: inline-flex;
-  border: none !important;
+  border: 2px solid var(--primary) !important;
   justify-content: flex-end;
 }
 
@@ -310,13 +316,14 @@ align-self: center;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  height: 100px !important;
+  height: 50px !important;
   border: none !important;
   text-align: start !important;
 }
 
 .css-iajp3t-MuiButtonGroup-root {
-  background-color: var(--light) !important;
+  background-color: var(--dark) !important;
+  border-color: 1px solid white !important;
 }
 
 .css-1hgrxp0-MuiButtonGroup-root {
@@ -326,6 +333,11 @@ align-self: center;
 
 .css-1w1rijm-MuiButtonBase-root-MuiButton-root {
   padding: 12px !important;
+}
+
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline:focus {
+  border-color: auto;
+  text-align: start;
 }
 
 /* --------------------- media queries --------------------- */

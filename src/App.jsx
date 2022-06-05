@@ -119,6 +119,7 @@ const App = () => {
               className="sign-in-with-GitHub"
               variant="outlined"
               onClick={signInWithGitHub}
+              disabled
             >
               Sign in with GitHub&nbsp;<BsGithub className="github-icon" />
             </Button>
@@ -174,15 +175,9 @@ const App = () => {
 
   return (
     <div className="content main">
-      {user ? (
-        <div className="header"></div>
-      ) : null}
       <div className="main-render">
         {renderContent()}
       </div>
-      {user ? (
-        <div className="footer"></div>
-      ) : null}
     </div>
   );
 };

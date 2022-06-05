@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import TextField from '@mui/material/TextField';
-import { FcBookmark, FcFolder, FcInfo, FcLike, FcLikePlaceholder, FcPicture, FcPhone, FcSettings, FcSearch, FcEmptyTrash, FcVideoCall } from "react-icons/fc";
+import { FcBookmark, FcFolder, FcInfo, FcPicture, FcPhone, FcSettings, FcSearch, FcEmptyTrash, FcVideoCall } from "react-icons/fc";
 
 // Components
 import Message from './Message';
-import {colorTheme} from '../themes/colorTheme';
+// import {colorTheme} from '../themes/colorTheme';
 
 const Channel = ({ user = null }) => {
   const db = firebase.firestore();
@@ -21,6 +21,7 @@ const Channel = ({ user = null }) => {
 
   const inputRef = useRef();
   const bottomListRef = useRef();
+
   const { uid, displayName, photoURL } = user;
 
   // Sign-out
@@ -63,8 +64,6 @@ const Channel = ({ user = null }) => {
       bottomListRef.current.scrollIntoView({ behavior: 'smooth' }); // Scroll down to the bottom of the list
     }
   };
-
-  console.log('Canal - ', displayName);
 
   Channel.propTypes = {
     user: PropTypes.shape({
