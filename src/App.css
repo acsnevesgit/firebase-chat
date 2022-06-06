@@ -65,7 +65,9 @@ h1 {
   width: 40vw;
   height: 100vh;
   border: 2px solid var(--secondary);
-  background-color: var(--light) !important;
+  /* background-color: var(--light) !important; */
+  background: rgb(254, 255, 0);
+  background: linear-gradient(180deg, rgba(254, 255, 0, 1) 0%, rgba(255, 136, 0, 1) 50%, rgba(255, 0, 0, 1) 100%);
   border-radius: 25px;
 }
 
@@ -83,8 +85,11 @@ h1 {
 }
 
 .chat-list {
-  background-image: url('./assets/wallpaper.jpg');
-  background-size: cover !important;
+  /* background-image: url('./assets/wallpaper.jpg');
+  background-size: cover !important; */
+  /* background-color: rgba(34,34,34, 0.9); */
+  background: rgb(254, 255, 0);
+  background: linear-gradient(0deg, rgba(254, 255, 0, 0.8) 0%, rgba(255, 136, 0, 0.8) 50%, rgba(255, 0, 0, 0.8) 100%);
   height: 25vw;
   min-height: 400px;
   overflow-y: overlay !important;
@@ -110,7 +115,7 @@ h1 {
 }
 
 .other {
-  direction:rtl !important;
+  direction: rtl !important;
 }
 
 .other div.text-message {
@@ -142,6 +147,11 @@ h1 {
   width: 24px;
   height: auto;
   margin-left: 6px;
+}
+
+.read {
+  margin: 0 12px 12px 12px;
+  text-align: end;
 }
 
 .settings-icon {
@@ -213,7 +223,7 @@ h1 {
 }
 
 .sign-out {
-align-self: center;
+  align-self: center;
 }
 
 .sign-in-with-Google,
@@ -257,7 +267,7 @@ align-self: center;
 .sign-in-with-Google:hover,
 .sign-in-with-GitHub:hover,
 .sign-in-Anonymously:hover {
-  background-color: rgba(0, 0, 0, 0.2) !important;
+  background-color: var(--light) !important;
 }
 
 .send-button:hover {

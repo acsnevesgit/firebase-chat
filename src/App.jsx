@@ -42,7 +42,7 @@ const App = () => {
   // Sign-in with Google
   const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider(); // Retrieve Google provider object
-    firebase.auth().useDeviceLanguage(); // Set language to the default browser preference
+    auth.useDeviceLanguage(); // Set language to the default browser preference
     try {
       await firebase.auth().signInWithPopup(provider);
     } catch (error) {
@@ -53,7 +53,7 @@ const App = () => {
   // Sign-in with GitHub
   const signInWithGitHub = async () => {
     const provider = new firebase.auth.GithubAuthProvider(); // Retrieve GitHub provider object
-    firebase.auth().useDeviceLanguage(); // Set language to the default browser preference
+    auth.useDeviceLanguage(); // Set language to the default browser preference
     try {
       await firebase.auth().signInWithPopup(provider);
     } catch (error) {
@@ -64,18 +64,9 @@ const App = () => {
   // Sign-in Anonymously
   const signInAnonymously = async () => {
     const provider = new firebase.auth.signInAnonymously();
-    firebase.auth().useDeviceLanguage(); // Set language to the default browser preference
+    auth.useDeviceLanguage(); // Set language to the default browser preference
     try {
       await firebase.auth().signInWithPopup(provider);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  // Sign-out
-  const signOut = async () => {
-    try {
-      await firebase.auth().signOut();
     } catch (error) {
       console.log(error.message);
     }

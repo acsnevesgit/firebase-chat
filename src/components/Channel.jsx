@@ -23,6 +23,7 @@ const Channel = ({ user = null }) => {
   const bottomListRef = useRef();
 
   const { uid, displayName, photoURL } = user;
+  localStorage.setItem('currentUsername', JSON.stringify(displayName));
 
   // Sign-out
   const signOut = async () => {
@@ -72,6 +73,7 @@ const Channel = ({ user = null }) => {
       photoURL: PropTypes.string,
     }),
   };
+
 
   // --------------------------- Render ---------------------------
 

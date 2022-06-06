@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 const Loader = ({ variant = 'primary', size = 'default' }) => {
   const loaderClass = classNames(
-    // Boder
+    // Border
     ['rounded-full', 'border-gray-500', 'border-opacity-25'],
     // Animation
     'animate-spin',

@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatRelative } from 'date-fns';
-import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
-import AvatarGroup from '@mui/material/AvatarGroup';
 
 const formatDate = date => {
   let formattedDate = '';
@@ -20,6 +18,8 @@ const Message = ({
   displayName = '',
   photoURL = '',
 }) => {
+  const username = JSON.parse(localStorage.getItem('currentUsername'));
+  // TODO: figure out way to only render double-check emoji if the message sent by 'self' has been read by 'other'
 
   // if no new message, do nothing
   if (!text) return null;
@@ -28,14 +28,14 @@ const Message = ({
   return (
     <div className="message-info">
       <div className="user-photo">
-      {photoURL ? (
-        <Avatar
-          src={photoURL}
-          alt="avatar"
-          className="avatar"
-          sx={{ width: 60, height: 60 }}
-        />
-      ) : null}
+        {photoURL ? (
+          <Avatar
+            src={photoURL}
+            alt="avatar"
+            className="avatar"
+            sx={{ width: 60, height: 60 }}
+          />
+        ) : null}
       </div>
       <div className='text-message' >
         <div className="user-name">
@@ -49,6 +49,7 @@ const Message = ({
           ) : null}
         </div>
         <p className="user-message">{text}</p>
+        {displayName === username ? (<p className='read'> ✔️✔️</p>) : null}
       </div>
     </div>
   );
