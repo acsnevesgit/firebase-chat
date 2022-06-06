@@ -65,7 +65,6 @@ h1 {
   width: 40vw;
   height: 100vh;
   border: 2px solid var(--secondary);
-  /* background-color: var(--light) !important; */
   background: rgb(254, 255, 0);
   background: linear-gradient(180deg, rgba(254, 255, 0, 1) 0%, rgba(255, 136, 0, 1) 50%, rgba(255, 0, 0, 1) 100%);
   border-radius: 25px;
@@ -85,9 +84,6 @@ h1 {
 }
 
 .chat-list {
-  /* background-image: url('./assets/wallpaper.jpg');
-  background-size: cover !important; */
-  /* background-color: rgba(34,34,34, 0.9); */
   background: rgb(254, 255, 0);
   background: linear-gradient(0deg, rgba(254, 255, 0, 0.8) 0%, rgba(255, 136, 0, 0.8) 50%, rgba(255, 0, 0, 0.8) 100%);
   height: 25vw;
@@ -95,6 +91,7 @@ h1 {
   overflow-y: overlay !important;
   display: flex;
   flex-direction: column-reverse !important;
+  border-bottom: 5px ridge;
 }
 
 .chat-main {
@@ -108,6 +105,10 @@ h1 {
   width: 39.5vw !important;
   margin: 32px 0;
   list-style: none;
+}
+
+.drawer-container {
+  margin: 48px;
 }
 
 .self div.text-message {
@@ -124,7 +125,6 @@ h1 {
   text-align-last: right;
   color: var(--secondary) !important;
   box-shadow: 2px 1px 2px 2px rgba(0, 0, 0, 0.1);
-
 }
 
 .other div.user-name p.display-name {
@@ -152,6 +152,7 @@ h1 {
 .read {
   margin: 0 12px 12px 12px;
   text-align: end;
+  font-size: 12px;
 }
 
 .settings-icon {
@@ -209,6 +210,13 @@ h1 {
   margin: 16px 32px 16px 16px;
 }
 
+.MuiDrawer-root>.MuiPaper-root {
+  width: 25vw;
+  height: 100vh;
+  background-color: var(--light);
+  overflow: visible;
+}
+
 .send-message {
   display: flex !important;
   margin: 0 0 32px 0 !important;
@@ -229,7 +237,8 @@ h1 {
 .sign-in-with-Google,
 .sign-in-with-GitHub,
 .sign-in-Anonymously,
-.send-button {
+.send-button,
+.block {
   background-color: white !important;
   color: var(--primary) !important;
   border: 2px solid var(--primary) !important;
@@ -252,7 +261,8 @@ h1 {
   background: none !important;
 }
 
-.send-button {
+.send-button,
+.block {
   width: 80px;
   margin-left: 12px !important;
   align-items: center;
@@ -272,6 +282,10 @@ h1 {
 
 .send-button:hover {
   background-color: rgba(247, 247, 247) !important;
+}
+
+.block:hover {
+  cursor: not-allowed !important;
 }
 
 .settings-button:hover {
@@ -342,7 +356,7 @@ h1 {
 }
 
 .css-1w1rijm-MuiButtonBase-root-MuiButton-root {
-  padding: 12px !important;
+  padding: 6px !important;
 }
 
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline:focus {
@@ -359,8 +373,12 @@ h1 {
     width: 60vw;
   }
 
+  .MuiDrawer-root>.MuiPaper-root {
+    width: 50vw;
+  }
+
   .chat-main ul {
-    width: 60vw !important;
+    width: 59.5vw !important;
   }
 
   img.logo {
@@ -381,7 +399,7 @@ h1 {
   }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 800px) {
 
   .content-container,
   .content-messages-container {
@@ -389,7 +407,7 @@ h1 {
   }
 
   .chat-main ul {
-    width: 80vw !important;
+    width: 85vw !important;
   }
 
   img.logo {
@@ -405,6 +423,10 @@ h1 {
 
   .sign-out {
     font-size: 16px;
+  }
+
+  .text-message {
+    width: 70vw !important;
   }
 
   .write-text {

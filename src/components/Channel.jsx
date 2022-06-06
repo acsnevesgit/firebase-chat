@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import firebase from 'firebase/compat/app';
+import storage from '../firebaseConfig';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { useFirestoreQuery } from '../hooks';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
@@ -9,7 +11,7 @@ import { FcBookmark, FcFolder, FcInfo, FcPicture, FcPhone, FcSettings, FcSearch,
 
 // Components
 import Message from './Message';
-// import {colorTheme} from '../themes/colorTheme';
+import LeftDrawer from './LeftDrawer';
 
 const Channel = ({ user = null }) => {
   const db = firebase.firestore();
@@ -25,6 +27,14 @@ const Channel = ({ user = null }) => {
   const { uid, displayName, photoURL } = user;
   localStorage.setItem('currentUsername', JSON.stringify(displayName));
 
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
+
+  // --------------------------- Functions ---------------------------
+
   // Sign-out
   const signOut = async () => {
     try {
@@ -34,20 +44,12 @@ const Channel = ({ user = null }) => {
     }
   };
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [inputRef]);
-
-  // --------------------------- Functions ---------------------------
-
-  // Handler
+  // Message change Handler
   const handleOnChange = event => {
     setNewMessage(event.target.value);
   };
 
-  // Submitter
+  // Message submit handler
   const handleOnSubmit = event => {
     event.preventDefault();
 
@@ -61,6 +63,7 @@ const Channel = ({ user = null }) => {
         displayName,
         photoURL,
       });
+
       setNewMessage(''); // Clear input field
       bottomListRef.current.scrollIntoView({ behavior: 'smooth' }); // Scroll down to the bottom of the list
     }
@@ -73,7 +76,6 @@ const Channel = ({ user = null }) => {
       photoURL: PropTypes.string,
     }),
   };
-
 
   // --------------------------- Render ---------------------------
 
@@ -119,9 +121,10 @@ const Channel = ({ user = null }) => {
           </div>
           <div className="message">
             <div className='message-options'>
-              <ButtonGroup className='settings-button' disabled type="submit" variant="outlined">
-                <Button><FcPicture className='settings-icon' /></Button>
-                <Button><FcFolder className='settings-icon' /></Button>
+              <ButtonGroup className='settings-button' type="submit" variant="outlined">
+                <div>
+                  <LeftDrawer />
+                </div>
               </ButtonGroup>
             </div>
             <form
@@ -141,8 +144,7 @@ const Channel = ({ user = null }) => {
                 type="submit"
                 disabled={!newMessage}
                 variant="outlined"
-                className="send-button"
-              // endIcon={<FcOk className='settings-icon' />}
+                className={!newMessage ? 'block' : "send-button"}
               >Send
               </Button>
             </form>
