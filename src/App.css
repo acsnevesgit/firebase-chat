@@ -85,7 +85,7 @@ h1 {
 
 .chat-list {
   background: rgb(254, 255, 0);
-  background: linear-gradient(0deg, rgba(254, 255, 0, 0.8) 0%, rgba(255, 136, 0, 0.8) 50%, rgba(255, 0, 0, 0.8) 100%);
+  background: radial-gradient(circle, rgba(254, 255, 0, 1) 0%, rgba(255, 136, 0, 1) 50%, rgba(255, 0, 0, 1) 100%);
   height: 25vw;
   min-height: 400px;
   overflow-y: overlay !important;
@@ -107,28 +107,37 @@ h1 {
   list-style: none;
 }
 
+.choose-file {
+  font-size: 16px;
+  margin: 48px 0 32px 0;
+}
+
 .drawer-container {
   margin: 48px;
 }
 
-.self div.text-message {
-  list-style: none;
+.emoji-popover {
+  width: 38vw;
+  height: 56vh;
+  background-color: var(--dark) !important;
+  border: 2px solid var(--dark) !important;
+  position: absolute !important;
+  top: 20vh  !important;
+  left: 31vw !important;
 }
 
-.other {
-  direction: rtl !important;
+.picker {
+  width: 36vw !important;
+  height: 51vh !important;
 }
 
-.other div.text-message {
-  list-style: none;
-  border: 1px solid rgba(143, 143, 143, 0.6) !important;
-  text-align-last: right;
-  color: var(--secondary) !important;
-  box-shadow: 2px 1px 2px 2px rgba(0, 0, 0, 0.1);
+aside.emoji-picker-react {
+  width: 35vw !important;
+  height: 50vh !important;
 }
 
-.other div.user-name p.display-name {
-  color: var(--secondary);
+.icons {
+  display: flex;
 }
 
 .display-name {
@@ -150,15 +159,51 @@ h1 {
 }
 
 .read {
-  margin: 0 12px 12px 12px;
-  text-align: end;
-  font-size: 12px;
+  text-align: right;
+}
+
+.read-icon {
+  width: 32px;
+  height: auto;
+  margin: 0 6px;
+  color: #0096FF;
 }
 
 .settings-icon {
   width: 24px;
   height: auto;
   padding: 0 !important;
+}
+
+.emoji-icon,
+.notification-icon {
+  color: #ffcc4d;
+}
+
+.attach-icon,
+.search-icon,
+.setting-icon {
+  color: #99aab5;
+}
+
+.bookmark-icon {
+  color: #ff0000;
+}
+
+.info-icon {
+  color: #0096FF;
+}
+
+.trash-icon {
+  color: #A85CF9;
+}
+
+.upload-icon {
+  color: var(--light)
+}
+
+.video-icon {
+  color: #4CBB17
 }
 
 .logo {
@@ -199,6 +244,7 @@ h1 {
 
 .message-options {
   display: flex;
+  flex-direction: row !important;
   justify-items: start !important;
   align-self: flex-start;
   margin-top: 32px;
@@ -215,7 +261,33 @@ h1 {
   height: 100vh;
   background-color: var(--light);
   overflow: visible;
+  border-right: 2px solid var(--dark);
 }
+
+.self div.text-message {
+  list-style: none;
+}
+
+.other {
+  direction: rtl !important;
+}
+
+.other div.text-message {
+  list-style: none;
+  border: 1px solid rgba(143, 143, 143, 0.6) !important;
+  color: var(--secondary) !important;
+  box-shadow: 2px 1px 2px 2px rgba(0, 0, 0, 0.1);
+  direction: ltr;
+}
+
+.other div.user-name {
+  direction: rtl !important;
+}
+
+.other div.user-name p.display-name {
+  color: var(--secondary);
+}
+
 
 .send-message {
   display: flex !important;
@@ -284,16 +356,17 @@ h1 {
   background-color: rgba(247, 247, 247) !important;
 }
 
-.block:hover {
-  cursor: not-allowed !important;
-}
-
 .settings-button:hover {
   background: auto !important;
 }
 
 .sign-out-button:hover {
   color: var(--light) !important;
+}
+
+.upload-button {
+  background-color: var(--dark) !important;
+  margin: 0 0 24px 0 !important;
 }
 
 .text {
@@ -321,7 +394,7 @@ h1 {
 
 .user-message {
   margin: 0 12px 12px 12px;
-  text-align: start;
+  text-align: justify;
 }
 
 .user-name {
@@ -350,6 +423,10 @@ h1 {
   border-color: 1px solid white !important;
 }
 
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+  padding: 6px 12px !important;
+}
+
 .css-1hgrxp0-MuiButtonGroup-root {
   border: none !important;
   margin: 0 16px !important;
@@ -368,9 +445,13 @@ h1 {
 
 @media only screen and (max-width: 1200px) {
 
-  .content-container,
   .content-messages-container {
     width: 60vw;
+  }
+
+  .emoji-popover {
+    width: 39vw;
+    height: 56vh;
   }
 
   .MuiDrawer-root>.MuiPaper-root {
@@ -401,7 +482,6 @@ h1 {
 
 @media only screen and (max-width: 800px) {
 
-  .content-container,
   .content-messages-container {
     width: 100vw;
   }
@@ -409,6 +489,21 @@ h1 {
   .chat-main ul {
     width: 85vw !important;
   }
+  .emoji-popover {
+    width: 52vw;
+    height: 50vh;
+  }
+
+  .picker {
+    width: 50vw !important;
+    height: 48vh !important;
+  }
+  
+  aside.emoji-picker-react {
+    width: 48vw !important;
+    height: 48vh !important;
+  }
+
 
   img.logo {
     width: 16em;

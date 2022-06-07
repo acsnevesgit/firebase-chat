@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { formatRelative } from 'date-fns';
 import Avatar from '@mui/material/Avatar';
+import { BsCheckAll, BsCheck } from "react-icons/bs";
 
 const formatDate = date => {
   let formattedDate = '';
@@ -49,7 +50,7 @@ const Message = ({
           ) : null}
         </div>
         <p className="user-message">{text}</p>
-        {displayName === username ? (<p className='read'> ✔️✔️</p>) : null}
+        {displayName === username ? <div className='read'><BsCheck className='read-icon' /></div> : null}
       </div>
     </div>
   );

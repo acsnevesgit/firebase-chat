@@ -3,12 +3,13 @@ import Button from '@mui/material/Button';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import storage from '../firebaseConfig';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
-import { FcFolder, FcPicture, FcUpload } from "react-icons/fc";
+import { ImAttachment } from "react-icons/im";
+import { MdFileUpload } from "react-icons/md";
 
-const LeftDrawer = () => {
+const LeftDrawerAttach = () => {
   const [file, setFile] = useState("");
   const [percent, setPercent] = useState(0);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   // --------------------------- Functions ---------------------------
 
@@ -24,7 +25,7 @@ const LeftDrawer = () => {
   // File upload handler
   const handleUpload = () => {
     if (!file) {
-      alert("Please choose a file first!");
+      alert("Please choose a file first!"); // TODO
     }
     const storageRef = ref(storage, `/files/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
@@ -37,6 +38,14 @@ const LeftDrawer = () => {
         );
 
         setPercent(percent); // update progress
+
+        if (percent === 100) {
+          // Close drawer after 2 seconds of successful uploading
+          setTimeout(() => {
+            setOpen(false);
+            setPercent(0);
+          }, 2000)
+        }
       },
       (err) => console.log(err),
       () => {
@@ -52,7 +61,7 @@ const LeftDrawer = () => {
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)}><FcFolder className='settings-icon' /></Button>
+      <Button onClick={toggleDrawer(true)}><ImAttachment className='settings-icon attach-icon' /></Button>
       <SwipeableDrawer
         className='left-drawer'
         anchor="left"
@@ -65,8 +74,8 @@ const LeftDrawer = () => {
           <h3>Attach file</h3>
           <div>
             <input className='choose-file' type="file" onChange={handleChange} accept="" />
-            <Button className='settings-button' onClick={handleUpload} variant="none"><FcUpload className='settings-icon' /></Button>
-            <p>{percent} "% done"</p>
+            <Button className='settings-button upload-button' onClick={handleUpload} variant="none"><MdFileUpload className='settings-icon upload-icon' /></Button>
+            <p>{percent}% uploaded</p>
           </div>
         </div>
       </SwipeableDrawer>
@@ -74,4 +83,4 @@ const LeftDrawer = () => {
   )
 };
 
-export default LeftDrawer;
+export default LeftDrawerAttach;

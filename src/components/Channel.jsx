@@ -1,17 +1,19 @@
 import React, { useEffect, useState, useRef } from 'react';
 import firebase from 'firebase/compat/app';
-import storage from '../firebaseConfig';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { useFirestoreQuery } from '../hooks';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import TextField from '@mui/material/TextField';
-import { FcBookmark, FcFolder, FcInfo, FcPicture, FcPhone, FcSettings, FcSearch, FcEmptyTrash, FcVideoCall } from "react-icons/fc";
+import { FaSearch, FaTrash } from "react-icons/fa";
+import { IoMdNotifications } from "react-icons/io";
+import { IoSettingsSharp } from "react-icons/io5";
+import { BsFillBookmarkStarFill, BsCameraVideoFill, BsFillInfoCircleFill } from "react-icons/bs";
 
 // Components
 import Message from './Message';
-import LeftDrawer from './LeftDrawer';
+import LeftDrawerAttach from './LeftDrawerAttach';
+import EmojiPicker from './EmojiPicker';
 
 const Channel = ({ user = null }) => {
   const db = firebase.firestore();
@@ -34,6 +36,11 @@ const Channel = ({ user = null }) => {
   }, [inputRef]);
 
   // --------------------------- Functions ---------------------------
+
+  // Get emoji
+  const getEmojiOnClick = async (event) => {
+    console.log(event.target);
+  };
 
   // Sign-out
   const signOut = async () => {
@@ -95,13 +102,13 @@ const Channel = ({ user = null }) => {
             ) : null}
           </div>
           <ButtonGroup className='settings-button' disabled type="submit" variant="none">
-            <Button><FcInfo className='settings-icon' /></Button>
-            <Button><FcSearch className='settings-icon' /></Button>
-            <Button><FcBookmark className='settings-icon' /></Button>
-            <Button><FcPhone className='settings-icon' /></Button>
-            <Button><FcVideoCall className='settings-icon' /></Button>
-            <Button><FcEmptyTrash className='settings-icon' /></Button>
-            <Button><FcSettings className='settings-icon' /></Button>
+            <Button><BsFillInfoCircleFill className='settings-icon info-icon' /></Button>
+            <Button><FaSearch className='settings-icon search-icon' /></Button>
+            <Button><BsFillBookmarkStarFill className='settings-icon bookmark-icon' /></Button>
+            <Button><IoMdNotifications className='settings-icon notification-icon' /></Button>
+            <Button><BsCameraVideoFill className='settings-icon video-icon' /></Button>
+            <Button><FaTrash className='settings-icon trash-icon' /></Button>
+            <Button><IoSettingsSharp className='settings-icon setting-icon' /></Button>
           </ButtonGroup>
         </div>
         <div className="chat-main">
@@ -122,8 +129,10 @@ const Channel = ({ user = null }) => {
           <div className="message">
             <div className='message-options'>
               <ButtonGroup className='settings-button' type="submit" variant="outlined">
-                <div>
-                  <LeftDrawer />
+                <div className='icons'>
+                  {/* // TODO: find way to send emoji on message */}
+                  <EmojiPicker />
+                  <LeftDrawerAttach />
                 </div>
               </ButtonGroup>
             </div>
@@ -144,7 +153,7 @@ const Channel = ({ user = null }) => {
                 type="submit"
                 disabled={!newMessage}
                 variant="outlined"
-                className={!newMessage ? 'block' : "send-button"}
+                className={"send-button"}
               >Send
               </Button>
             </form>
